@@ -1,0 +1,89 @@
+###############################################################################
+#
+#  ~/.screenrc
+#
+###############################################################################
+
+
+# =============================================================================
+#    Constantes
+# =============================================================================
+
+#  %n - numero de fenetre
+#  %t - titre de fenetre
+#  %w -
+#  %s -
+
+
+# =============================================================================
+#     Variables
+# =============================================================================
+
+startup_message off  # pas d'affichage du corpyright au demarage
+vbell           off  # pas de bip visuel en cas d'erreur
+activity        "activity in %n (%t) [%w:%s]~" # notification d'activite
+deflogin        on   #
+defscrollback   1000 # nombre de lignes que l'on peut remonter
+
+
+# =============================================================================
+#     Keybindings
+# =============================================================================
+
+# ^ = Ctrl (note C-)
+
+escape ^Oo # change C-a en C-o (garder C-a pour retour en debut de ligne)
+
+bind ^k kill     # C-o C-k : tuer la fenetre courante
+bind ^\          # C-o C-\ : tuer toutes les fenetres et quitter
+bind k           # C-o k : rien
+bind \\          # C-o \ : rien
+bind I login on  #
+bind O login off #
+
+bind y copy    # C-o y : mode copie (utiliser 'espace' pour selection)
+bind p paste . # C-o p : colle le buffer dans la fenetre courante
+
+bind + resize +1 # C-o + : augmente la taille de l'ecran apres C-o S
+bind - resize -1 # C-o - : diminue la taille de l'ecran apres C-o S
+bind _ resize max # C-o _ : donne a l'ecran la taille maximale
+bind = resize =
+
+
+# =============================================================================
+#     Termcap and Terminfo
+# =============================================================================
+
+termcapinfo xterm "ve=\E[?25h\E[?17;0;64c"
+termcapinfo linux "ve=\E[?25h\E[?17;0;64c"
+
+shelltitle "$|shell"
+
+
+# =============================================================================
+#     Caption
+# =============================================================================
+
+caption always "%{+u wk}%?%-w%?%{rk}[%n %t]%{wk}%?%+w%?"
+#caption always "%{wb}%n%f %t %{wk} %?%-Lw%?%{wb}[%n*%f %t]%?(%u)%?%{wk}%?%+Lw%? %{wk}"
+
+
+# =============================================================================
+#     Hardstatus
+# =============================================================================
+
+hardstatus alwayslastline "%{kw}[ %H ] %{kg}[ %D %d.%m.%Y - %c ] %{kr}[ %l ]"
+#%-26=%1`"
+
+
+# =============================================================================
+#     Commandes de base
+# =============================================================================
+#
+# C-o s : freeze
+# C-o q : defrise
+# C-o S : split horizontal
+# C-o X : supprime un split
+# C-o TAB : navigue entre split
+# 
+

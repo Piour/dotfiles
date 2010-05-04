@@ -1,0 +1,7 @@
+urxvt*foreground : white
+urxvt*font : xft:Bitstream Vera Sans Mono:pixelsize=15
+urxvt*background : black
+urxvt*scrollBar : false
+urxvt*geometry : 80x40
+urxvt*transparent : true
+urxvt*shading : 20
