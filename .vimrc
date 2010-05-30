@@ -75,6 +75,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set mouse=             " fonctionnement normal de souris
+
 set visualbell t_vb=   " enleve le bip en cas d'erreur
 " set errorbells
 " set novisualbell
