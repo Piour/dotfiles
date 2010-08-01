@@ -198,6 +198,12 @@ nmap <C-D> "=strftime("%d/%m/%Y")<CR>P
 " <SPACE> depliage/repliage
 nmap <Space> zA
 
+" ctrl-j coupe la ligne au niveau du curseur en mode normal
+" l'inverse de maj-j
+nmap <C-j> i<CR><ESC>
+
+" aligne les = de la selection
+vmap ,a <Plug>AM_t= 
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -290,4 +296,13 @@ vn _xc :call RemoveComments() <CR>
 vn _ls :call MakeList("\\begin{itemize}","\\end{itemize}", "\\\\item ") <ESC> :'>+2 <CR>
 vn _le :call MakeList("\\begin{enumerate}","\\end{enumerate}", "\\\\item ") <ESC> :'>+2 <CR>
 
-nmap <C-j> i<CR><ESC>
+
+nmap <leader>rci :%!ruby-code-indenter<cr> 
+set path+=/path/to/your/rails-application/app/**
+set path+=/path/to/your/rails-application/lib/**
+set suffixesadd=.rb
+set includeexpr+=substitute(v:fname,'s$','','g')
+
+highlight OverLength ctermbg=yellow ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
