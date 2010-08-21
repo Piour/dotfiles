@@ -126,7 +126,7 @@ override_utf8_locale no
 
 # Add spaces to keep things from moving about?
 # This only affects certain objects.
-use_spacer no
+use_spacer none
 
 #   mldonkey_hostname     Hostname for mldonkey stuff, defaults to localhost
 #   mldonkey_port         Mldonkey port, 4001 default
@@ -145,7 +145,7 @@ use_spacer no
 #min_port_monitor_connections 256
 
 # none, xmms, bmp, audacious, infopipe (default is none)
-xmms_player none
+# xmms_player none
 
 # variable is given either in format $variable or in ${variable}. Latter
 # allows characters right after the variable and must be used in network
@@ -176,15 +176,15 @@ ${color lightgrey}/      ${color #88aadd}${fs_used_perc /}% \
 ${fs_bar 5,240 /} ${fs_free /}
 ${color lightgrey}/home  ${color #88aadd}${fs_used_perc /home}% \
 ${fs_bar 5,240 /home} ${fs_free /home}
-$stippled_hr
+${color lightgrey}$stippled_hr
 ${color lightgrey}Download (${totaldown wlan0})
-eth0: ${color #88aadd}${downspeed eth0}k/s \
-$alignr ${downspeed wlan0}k/s ${color lightgrey}:wlan0 (${wireless_essid wlan0})
+eth0: ${color #88aadd}${downspeed eth0} \
+$alignr ${downspeed wlan0} ${color lightgrey}:wlan0 (${wireless_essid wlan0})
 ${downspeedgraph eth0 20,120 88aadd eeeeee} \
 $alignr${downspeedgraph wlan0 20,120 88aadd eeeeee}
 ${color lightgrey}Upload (${totalup wlan0})
-eth0: ${color #88aadd}${upspeed eth0}k/s \
-$alignr ${upspeed wlan0}k/s ${color lightgrey}:wlan0 (${wireless_essid wlan0})
+eth0: ${color #88aadd}${upspeed eth0} \
+$alignr ${upspeed wlan0} ${color lightgrey}:wlan0 (${wireless_essid wlan0})
 ${upspeedgraph eth0 20,120 88aadd eeeeee} \
 $alignr${upspeedgraph wlan0 20,120 88aadd eeeeee}
 ${color #ddaa00} ${tcp_portmon 1 65535 rhost 0} \
