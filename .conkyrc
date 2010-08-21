@@ -154,7 +154,7 @@ xmms_player none
 # stuff after 'TEXT' will be formatted on screen
 TEXT
 $alignc $nodename - $sysname $kernel ($machine) - \
-${if_match ${addr eth0} == "No Address"}${addr wlan0}${else}${addr eth0}${endif}
+${if_match "${addr eth0}"=="No Address"}${addr wlan0}${else}${addr eth0}${endif}
 $alignc $uptime
 $stippled_hr
 ${color lightgrey}Core 1${color #88aadd} ${cpu cpu1}% \
