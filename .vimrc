@@ -27,7 +27,7 @@
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trucs à retenir
+" Trucs a retenir
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <C-r> : redo
 " <C-g> : Affiche le nom du fichier courant (avec son chemin)
@@ -53,7 +53,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lancement
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible   " pas de compatibilité avec vi
+set nocompatible   " pas de compatibilite avec vi
 " Inclusion d'un autre fichier avec des options
 if filereadable(expand("~/.vimrc_local.vim"))
    source ~/.vimrc_local.vim
@@ -85,12 +85,12 @@ set visualbell t_vb=   " enleve le bip en cas d'erreur
 
 set laststatus=1       " type de la barre de statut
 
-set cmdheight=1        " nombre de lignes réservées au mode Lignecmd
+set cmdheight=1        " nombre de lignes reservees au mode Lignecmd
 set ruler              " affiche la position du curseur (lignes & colonnes)
 
 set scrolloff=5        " nb. min. de lignes au dessus et au dessous du curseur
 
-set hlsearch           " colore les occurrences du motif recherché
+set hlsearch           " colore les occurrences du motif recherche
 set incsearch          " colore l'occurrence pendant la saisie de recherche
 
 
@@ -107,21 +107,21 @@ set ttyfast            " terminal rapide ??
 " Edition
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set history=50         " taille de l'historique du mode Lignecmd
-set undolevels=50      " nb. maximum de changements pouvant être annulés.
+set undolevels=50      " nb. maximum de changements pouvant etre annules.
 
-set autoread           " relit auto. un fichier modifié en dehors de vim
+set autoread           " relit auto. un fichier modifie en dehors de vim
 
 set formatoptions=tcrqn2       " coupure des mots a textwidth
-set backspace=indent,eol,start " retour arrière :help i_backspacing
+set backspace=indent,eol,start " retour arriere :help i_backspacing
 
 set smartindent  " indentation automatique pour les programmes
-set shiftwidth=3 " nombre de blancs couverts par un décalage (< et >)
-set tabstop=3    " nombre de blancs couverts par une tabulation (<Tab>)
-set expandtab    " remplit d'espaces blancs les caractères <Tab>
+set shiftwidth=4 " nombre de blancs couverts par un decalage (< et >)
+set tabstop=4    " nombre de blancs couverts par une tabulation (<Tab>)
+set expandtab    " remplit d'espaces blancs les caracteres <Tab>
 
 set showcmd      " affichage des commandes partiellement saisies
 
-set foldmethod=syntax " gestion des replis (basé syntaxe)
+set foldmethod=syntax " gestion des replis (base syntaxe)
 
 
 
@@ -174,7 +174,7 @@ nnoremap <F2> :w<CR>
 " <F3> compile
 nnoremap <F3> :make<CR><CR><CR>
 
-" <F5> rafraichit le fichier en cours d'édition
+" <F5> rafraichit le fichier en cours d'edition
 nnoremap <F5> :e!<CR>
 
 " <F6> explorateur de tampons (split horizontal)
@@ -186,10 +186,10 @@ nnoremap <F7> :Hexplore<CR>
 nnoremap <F10> :!aspell --mode=tex check % <CR> :e!<CR>
 " <F11> efface les espaces en fin de ligne
 nnoremap <F11> :%s/\s\+$//<CR>
-" <F12> met à jour le vimrc
+" <F12> met a jour le vimrc
 nnoremap <F12> :source ~/.vimrc<CR>
 
-" <TAB> indentation à la emacs
+" <TAB> indentation a la emacs
 nnoremap <tab> =$
 
 " <C-D> ajoute la date courrante, format : JJ/MM/YYYY
@@ -216,7 +216,7 @@ vmap ,a <Plug>AM_t=
 " Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set wildmenu                  " pas besoin si wildmode a full
-set wildmode=list:full          " mode du complètement
+set wildmode=list:full          " mode du completement
 set completeopt=longest,menuone " menu lors d'un complement
 
 " InsertTabWrapper
@@ -303,5 +303,6 @@ set path+=/path/to/your/rails-application/lib/**
 set suffixesadd=.rb
 set includeexpr+=substitute(v:fname,'s$','','g')
 
-#highlight OverLength ctermbg=yellow ctermfg=white guibg=#592929
-#match OverLength /\%81v.\+/
+highlight OverLength ctermbg=yellow ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
