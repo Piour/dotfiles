@@ -10,10 +10,10 @@
 " plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://www.vim.org/scripts/script.php?script_id=42 (bufexplorer)
-" http://www.vim.org/scripts/script.php?script_id=294 (align)
 " http://www.vim.org/scripts/script.php?script_id=1218 (nerd_commenter)
+" cc, cn, c , ci, cs, cy, c$, cA, cl, cb, cu
 " http://www.vim.org/scripts/script.php?script_id=1697 (surround)
-" http://www.vim.org/scripts/script.php?script_id=1764 (code_complete / C only)
+" ysiw) viwS)
 " http://www.vim.org/scripts/script.php?script_id=2009 (autoclose)
 
 
@@ -39,14 +39,6 @@
 " <C-x> <C-k> : completion dictionnaire set dictionary+=/usr/share/dict/words
 " set nu: affiche les numeros de lignes
 " :.! cmd : ajoute la sortie de la commande cmd au fichier en cours d'edition
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trucs a voir
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set digraph " enable digraphs, needed for special characters
-" set magic " enable advanced regular expression in searches
 
 
 
@@ -106,8 +98,8 @@ set ttyfast            " terminal rapide ??
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Edition
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set history=50         " taille de l'historique du mode Lignecmd
-set undolevels=50      " nb. maximum de changements pouvant etre annules.
+set history=1000       " taille de l'historique du mode Lignecmd
+set undolevels=1000    " nb. maximum de changements pouvant etre annules.
 
 set autoread           " relit auto. un fichier modifie en dehors de vim
 
@@ -164,6 +156,7 @@ highlight Todo        ctermfg=red
 " Touches personnelles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clavier fr
+let mapleader = ","
 map ; .
 
 " ² change capitale/minuscule
@@ -178,7 +171,7 @@ nnoremap <F3> :make<CR><CR><CR>
 nnoremap <F5> :e!<CR>
 
 " <F6> explorateur de tampons (split horizontal)
-nnoremap <F6> :HSBufExplorer<CR>
+nnoremap <F6> :BufExplorerHorizontalSplit<CR>
 " <F7> explorateur de fichiers (split horizontal)
 nnoremap <F7> :Hexplore<CR>
 
@@ -203,7 +196,7 @@ nmap <Space> zA
 nmap <C-j> i<CR><ESC>
 
 " aligne les = de la selection
-vmap ,a <Plug>AM_t= 
+vmap ,a <Plug>AM_t=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -246,63 +239,13 @@ highlight   PmenuThumb ctermfg=0 ctermbg=7
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trucs a voir
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set digraph " enable digraphs, needed for special characters
+" set magic " enable advanced regular expression in searches
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tests
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Mutt
-au BufEnter mutt* so ~/.vim/mutt.colors
-
-
-" LaTeX
-vn _b s\textbf{}<ESC>P
-vn _i s\textit{}<ESC>P
-vn _sc s\textsc{}<ESC>P
-
-vn _pc S\begin{center}<CR>\end{center}<ESC>P
-vn _pl S\begin{flushleft}<CR>\end{flushleft}<ESC>P
-vn _pr S\begin{right}<CR>\end{right}<ESC>P
-vn _pv S\begin{verbatim}<CR>\end{verbatim}<ESC>P
-vn _fg S\begin{figure}[h]<CR>\end{figure}<ESC>P
-
-vn _pa s\part{}<ESC>P
-vn _ch s\chapter{}<ESC>P
-vn _se s\section{}<ESC>P
-vn _s2 s\subsection{}<ESC>P
-vn _s3 s\subsubsection{}<ESC>P
-
-vn _ft s\footnote{}<ESC>P
-vn _lb s\label{}<ESC>P
-vn _rf s\ref{}<ESC>P
-vn _vr s\vref{}<ESC>P
-
-function MakeList (text1, text2, text3) range
-   exe (a:firstline) . "," . a:lastline . 's/^/' . a:text3
-   if (strlen(a:text1) > 0)
-      exe append (a:firstline -1 ,a:text1)
-   endif
-   if (strlen(a:text2) > 0)
-      exe append (a:lastline +1, a:text2)
-   endif
-endfunction
-
-function RemoveComments () range
-   exe (a:firstline) . "," . a:lastline . 's/^% /'
-endfunction
-
-vn _pt :call MakeList("","", "\\\\item ") <CR>
-vn _mc :call MakeList("","", "\% ") <CR>
-vn _xc :call RemoveComments() <CR>
-
-vn _ls :call MakeList("\\begin{itemize}","\\end{itemize}", "\\\\item ") <ESC> :'>+2 <CR>
-vn _le :call MakeList("\\begin{enumerate}","\\end{enumerate}", "\\\\item ") <ESC> :'>+2 <CR>
-
-
-nmap <leader>rci :%!ruby-code-indenter<cr> 
-set path+=/path/to/your/rails-application/app/**
-set path+=/path/to/your/rails-application/lib/**
-set suffixesadd=.rb
-set includeexpr+=substitute(v:fname,'s$','','g')
-
-highlight OverLength ctermbg=yellow ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-

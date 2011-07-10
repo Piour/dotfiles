@@ -153,6 +153,7 @@ use_spacer none
 
 # stuff after 'TEXT' will be formatted on screen
 TEXT
+${image /home/piour/Desktop/tat.jpg -p 1140,5 -s 200x300}
 $alignc $nodename - $sysname $kernel ($machine) - \
 ${if_match "${addr eth0}"=="No Address"}${addr wlan0}${else}${addr eth0}${endif}
 $alignc $uptime
@@ -160,7 +161,11 @@ $stippled_hr
 ${color lightgrey}Core 1${color #88aadd} ${cpu cpu1}% \
 $alignr ${cpu cpu2}% ${color lightgrey}Core 2
 ${cpugraph cpu1 20,120 88aadd eeeeee} \
-$alignr${cpugraph cpu2 20,120 88aadd eeeeee}
+$alignr${cpugraph cpu3 20,120 88aadd eeeeee}
+${color lightgrey}Core 3${color #88aadd} ${cpu cpu3}% \
+$alignr ${cpu cpu4}% ${color lightgrey}Core 4
+${cpugraph cpu3 20,120 88aadd eeeeee} \
+$alignr${cpugraph cpu4 20,120 88aadd eeeeee}
 ${color #ddaa00} ${top name 1} ${top pid 1} ${top cpu 1}
 ${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2}
 ${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3}
@@ -174,8 +179,8 @@ ${color lightgrey}Swap   ${color #88aadd}$swapperc%  ${swapbar 5,240} $swapmax
 
 ${color lightgrey}/      ${color #88aadd}${fs_used_perc /}% \
 ${fs_bar 5,240 /} ${fs_free /}
-${color lightgrey}/home  ${color #88aadd}${fs_used_perc /home}% \
-${fs_bar 5,240 /home} ${fs_free /home}
+${color lightgrey}/data  ${color #88aadd}${fs_used_perc /data}% \
+${fs_bar 5,240 /data} ${fs_free /data}
 ${color lightgrey}$stippled_hr
 ${color lightgrey}Download (${totaldown wlan0})
 eth0: ${color #88aadd}${downspeed eth0} \
