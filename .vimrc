@@ -198,6 +198,9 @@ nmap <C-j> i<CR><ESC>
 " aligne les = de la selection
 vmap ,a <Plug>AM_t=
 
+" supprime la mise en valeur des elements recherches
+nnoremap <CR> :noh<CR>/<BS>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Abreviations
