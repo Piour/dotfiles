@@ -6,6 +6,13 @@
 
 
 # =============================================================================
+#    Shell
+# =============================================================================
+
+hell -${SHELL}
+
+
+# =============================================================================
 #    Constantes
 # =============================================================================
 
@@ -32,21 +39,22 @@ defscrollback   1000 # nombre de lignes que l'on peut remonter
 
 # ^ = Ctrl (note C-)
 
-escape ^Oo # change C-a en C-o (garder C-a pour retour en debut de ligne)
+#escape ^Ot # change C-a en C-t (garder C-a pour retour en debut de ligne)
+escape ^Tt # change C-a en C-t (garder C-a pour retour en debut de ligne)
 
-bind ^k kill     # C-o C-k : tuer la fenetre courante
-bind ^\          # C-o C-\ : tuer toutes les fenetres et quitter
-bind k           # C-o k : rien
-bind \\          # C-o \ : rien
+bind ^k kill     # C-t C-k : tuer la fenetre courante
+bind ^\          # C-t C-\ : tuer toutes les fenetres et quitter
+bind k           # C-t k : rien
+bind \\          # C-t \ : rien
 bind I login on  #
 bind O login off #
 
-bind y copy    # C-o y : mode copie (utiliser 'espace' pour selection)
-bind p paste . # C-o p : colle le buffer dans la fenetre courante
+bind y copy    # C-t y : mode copie (utiliser 'espace' pour selection)
+bind p paste . # C-t p : colle le buffer dans la fenetre courante
 
-bind + resize +1 # C-o + : augmente la taille de l'ecran apres C-o S
-bind - resize -1 # C-o - : diminue la taille de l'ecran apres C-o S
-bind _ resize max # C-o _ : donne a l'ecran la taille maximale
+bind + resize +1 # C-t + : augmente la taille de l'ecran apres C-t S
+bind - resize -1 # C-t - : diminue la taille de l'ecran apres C-t S
+bind _ resize max # C-t _ : donne a l'ecran la taille maximale
 bind = resize =
 
 
@@ -80,10 +88,10 @@ hardstatus alwayslastline "%{kw}[ %H ] %{kg}[ %D %d.%m.%Y - %c ] %{kr}[ %l ]"
 #     Commandes de base
 # =============================================================================
 #
-# C-o s : freeze
-# C-o q : defrise
-# C-o S : split horizontal
-# C-o X : supprime un split
-# C-o TAB : navigue entre split
+# C-t s : freeze
+# C-t q : defrise
+# C-t S : split horizontal
+# C-t X : supprime un split
+# C-t TAB : navigue entre split
 # 
 

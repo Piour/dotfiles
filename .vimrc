@@ -1,21 +1,39 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Piour's .vimrc file.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Last change: 31/01/2009
+" Last change: 29/04/2012 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" http://www.vim.org/scripts/script.php?script_id=42 (bufexplorer)
+" pour vundle
+" :BundleInstall
+set nocompatible
+filetype off
+set rtp+=~/.vim/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'L9'
+
+" depots github
+Bundle 'tpope/vim-fugitive'
+Bundle 'clones/vim-fuzzyfinder'
+
+" depots vim-scripts
+Bundle 'The-NERD-Commenter'
 " http://www.vim.org/scripts/script.php?script_id=1218 (nerd_commenter)
-" cc, cn, c , ci, cs, cy, c$, cA, cl, cb, cu
+" ,cc ,cn ,c  ,ci ,cs ,cy ,c$ ,cA ,cl ,cb ,cu
+Bundle 'surround.vim'
 " http://www.vim.org/scripts/script.php?script_id=1697 (surround)
 " ysiw) viwS)
+Bundle 'AutoClose'
 " http://www.vim.org/scripts/script.php?script_id=2009 (autoclose)
+" Bundle 'FuzzyFinder'
 
+" pour vundle
+filetype plugin indent on
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -23,7 +41,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://vim.dindinx.net/traduit/html/options.txt.php (fr)
 " :help commande
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -41,7 +58,6 @@
 " :.! cmd : ajoute la sortie de la commande cmd au fichier en cours d'edition
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lancement
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -52,7 +68,6 @@ if filereadable(expand("~/.vimrc_local.vim"))
 endif
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ouverture d'un fichier
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -61,7 +76,6 @@ filetype plugin on " charge les plugins relatifs au fichier ouvert
 if has("syntax")   " active la couloration syntaxique si possible
    syntax on
 endif
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -75,7 +89,7 @@ set visualbell t_vb=   " enleve le bip en cas d'erreur
 " set noeb
 " set novb
 
-set laststatus=1       " type de la barre de statut
+set laststatus=2       " type de la barre de statut
 
 set cmdheight=1        " nombre de lignes reservees au mode Lignecmd
 set ruler              " affiche la position du curseur (lignes & colonnes)
@@ -92,7 +106,6 @@ runtime macros/matchit.vim " permet les liens entre tag xml et autres syntaxes
 set title              " donne un titre au terminal
 
 set ttyfast            " terminal rapide ??
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -116,40 +129,32 @@ set showcmd      " affichage des commandes partiellement saisies
 set foldmethod=syntax " gestion des replis (base syntaxe)
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coloration syntaxique
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"highlight clear
-"highlight Normal      ctermfg=black
-"highlight Comment     ctermfg=darkgreen
-"highlight Constant    ctermfg=darkblue
-"highlight String      ctermfg=black
-"highlight Identifier  ctermfg=black
-"highlight Statement   ctermfg=black
-"highlight PreProc     ctermfg=darkblue
-"highlight Type        ctermfg=darkblue
-"highlight Special     ctermfg=darkblue
-"highlight Underlined  ctermfg=darkblue  ctermbg=green
-"highlight Ignore      ctermfg=lightblue
-"highlight Error       ctermfg=red
-"highlight Todo        ctermfg=red
-
-" Coloration syntaxique
 highlight clear
 highlight Normal      ctermfg=grey
 highlight Comment     ctermfg=darkgreen
+highlight Identifier  ctermfg=lightgrey cterm=none
+highlight Delimiter   ctermfg=lightgrey
+highlight Type        ctermfg=lightgrey
+highlight Operator    ctermfg=darkcyan
+highlight Function    ctermfg=darkcyan
+highlight Statement   ctermfg=darkcyan
+highlight Keyword     ctermfg=darkcyan
+highlight Exception   ctermfg=darkcyan
 highlight Constant    ctermfg=darkcyan
-highlight Identifier  ctermfg=grey
-highlight Statement   ctermfg=grey
+highlight Boolean     ctermfg=darkcyan
+highlight Number      ctermfg=darkcyan
+highlight Float       ctermfg=darkcyan
+highlight String      ctermfg=darkcyan
+highlight Character   ctermfg=darkcyan
 highlight PreProc     ctermfg=darkcyan
-highlight Type        ctermfg=darkcyan
 highlight Special     ctermfg=darkcyan
 highlight Underlined  ctermfg=darkcyan
 highlight Ignore      ctermfg=lightblue
-highlight Error       ctermfg=red
-highlight Todo        ctermfg=red
-
+highlight Error       ctermfg=black
+highlight Todo        ctermfg=black
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -162,18 +167,23 @@ map ; .
 " ² change capitale/minuscule
 map ² ~
 
+" ,n pour passen en mode normal
+imap <leader>n <ESC>
+
 " <F2> enregistre le fichier
 nnoremap <F2> :w<CR>
+
 " <F3> compile
 nnoremap <F3> :make<CR><CR><CR>
-
 " <F5> rafraichit le fichier en cours d'edition
 nnoremap <F5> :e!<CR>
 
-" <F6> explorateur de tampons (split horizontal)
-nnoremap <F6> :BufExplorerHorizontalSplit<CR>
+" <F6> recherche de tampons
+nnoremap <F6> :FufBuffer<CR>
 " <F7> explorateur de fichiers (split horizontal)
 nnoremap <F7> :Hexplore<CR>
+" <F6> recherche de fichiers
+nnoremap <F8> :FufFile<CR>
 
 " <F10> aspell sur fichier tex
 nnoremap <F10> :!aspell --mode=tex check % <CR> :e!<CR>
@@ -185,15 +195,15 @@ nnoremap <F12> :source ~/.vimrc<CR>
 " <TAB> indentation a la emacs
 nnoremap <tab> =$
 
-" <C-D> ajoute la date courrante, format : JJ/MM/YYYY
-nmap <C-D> "=strftime("%d/%m/%Y")<CR>P
+" <date> en mode normal ajoute la date courrante, format : JJ/MM/YYYY
+nmap date "=strftime("%d/%m/%Y")<CR>P
 
 " <SPACE> depliage/repliage
 nmap <Space> zA
 
 " ctrl-j coupe la ligne au niveau du curseur en mode normal
 " l'inverse de maj-j
-nmap <C-j> i<CR><ESC>
+nmap <M-j> i<CR><ESC>
 
 " aligne les = de la selection
 vmap ,a <Plug>AM_t=
@@ -219,26 +229,31 @@ set completeopt=longest,menuone " menu lors d'un complement
 " direction : sens de recherche pour la completion (forward ou backward)
 " choisit la bonne fonction pour la touche <TAB> suivant les cas
 function! InsertTabWrapper(direction)
-   let col = col('.') - 1
-   if !col || getline('.')[col - 1] !~ '\k'
-      return "\<tab>"
-   elseif "backward" == a:direction
-      return "\<c-p>"
-   else
-      return "\<c-n>"
-   endif
+    if "omni" == a:direction
+        return "\<c-x>\<c-o>"
+    endif
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    elseif "backward" == a:direction
+        return "\<c-p>"
+    else
+        return "\<c-n>"
+    endif
 endfunction
 
-" <TAB> fais la completion (style shell) - mot suivant
+" <tab> fait la completion (style shell) - mot suivant
 inoremap <s-tab> <c-r>=InsertTabWrapper ("forward")<cr>
-" <TAB> fais la completion (style shell) - mot precedant
+" <tab> fait la completion (style shell) - mot precedant
 inoremap <tab> <c-r>=InsertTabWrapper ("backward")<cr>
+" ,<tab> fait l'omnicompletion (style shell)
+inoremap <leader><tab> <c-r>=InsertTabWrapper ("omni")<cr>
+inoremap <leader>c </<c-x><c-o>
 
 highlight   Pmenu      ctermfg=black ctermbg=lightcyan
 highlight   PmenuSel   ctermfg=0 ctermbg=7
 highlight   PmenuSbar  ctermfg=7 ctermbg=0
 highlight   PmenuThumb ctermfg=0 ctermbg=7
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,7 +263,24 @@ highlight   PmenuThumb ctermfg=0 ctermbg=7
 " set magic " enable advanced regular expression in searches
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tests
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256
+map Y y$
+vnoremap < <gv
+vnoremap > >gv
+nnoremap j gj
+nnoremap k gk
+inoremap jk <Esc>
+noremap <Leader><Leader> <C-^>
+autocmd BufEnter * execute ":silent! chdir ".escape(expand("%:p:h"), ' ')
+set statusline=
+set statusline +=%*%y%*                "file type
+set statusline +=%*\ %<%F%*            "full path
+set statusline +=%*%=%5l%*             "current line
+set statusline +=%*/%L%*               "total lines
+set statusline +=%*%4v\ %*             "virtual column number
+set statusline +=%*0x%04B\ %*          "character under cursor"
+set statusline +=%*%{fugitive#statusline()}%*
+

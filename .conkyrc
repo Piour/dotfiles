@@ -153,7 +153,9 @@ use_spacer none
 
 # stuff after 'TEXT' will be formatted on screen
 TEXT
-${image /home/piour/Desktop/tat.jpg -p 1140,5 -s 200x300}
+${image /home/piour/Desktop/images/tat.jpg -p 1140,5 -s 199x266}
+${image /home/piour/Desktop/images/frank_elephant.jpg -p 1075,280 -s 266x199}
+${image /home/piour/Desktop/images/parents.jpg -p 1075,488 -s 266x199}
 $alignc $nodename - $sysname $kernel ($machine) - \
 ${if_match "${addr eth0}"=="No Address"}${addr wlan0}${else}${addr eth0}${endif}
 $alignc $uptime
@@ -205,3 +207,4 @@ ${alignr} ${tcp_portmon 1 65535 rservice 4}
 ${color lightgrey} ${tcp_portmon 1 65535 rhost 5} \
 ${alignr} ${tcp_portmon 1 65535 rservice 5}
 $stippled_hr
+
