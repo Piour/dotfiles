@@ -20,6 +20,8 @@ Bundle 'L9'
 " depots github
 Bundle 'tpope/vim-fugitive'
 Bundle 'clones/vim-fuzzyfinder'
+Bundle 'ervandew/supertab'
+Bundle 'fs111/pydoc.vim'
 
 " depots vim-scripts
 Bundle 'The-NERD-Commenter'
@@ -30,7 +32,6 @@ Bundle 'surround.vim'
 " ysiw) viwS)
 Bundle 'AutoClose'
 " http://www.vim.org/scripts/script.php?script_id=2009 (autoclose)
-" Bundle 'FuzzyFinder'
 
 " pour vundle
 filetype plugin indent on
@@ -225,30 +226,17 @@ nnoremap <CR> :noh<CR>/<BS>
 set wildmode=list:full          " mode du completement
 set completeopt=longest,menuone " menu lors d'un complement
 
-" InsertTabWrapper
-" direction : sens de recherche pour la completion (forward ou backward)
-" choisit la bonne fonction pour la touche <TAB> suivant les cas
-function! InsertTabWrapper(direction)
-    if "omni" == a:direction
-        return "\<c-x>\<c-o>"
-    endif
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    elseif "backward" == a:direction
-        return "\<c-p>"
-    else
-        return "\<c-n>"
-    endif
-endfunction
+" python
+au FileType python set omnifunc=pythoncomplete#Complete
+" javascript
+au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+" html
+au FileType html set omnifunc=htmlcomplete#CompleteTags
+" css
+au FileType css set omnifunc=csscomplete#CompleteCSS
 
-" <tab> fait la completion (style shell) - mot suivant
-inoremap <s-tab> <c-r>=InsertTabWrapper ("forward")<cr>
-" <tab> fait la completion (style shell) - mot precedant
-inoremap <tab> <c-r>=InsertTabWrapper ("backward")<cr>
-" ,<tab> fait l'omnicompletion (style shell)
-inoremap <leader><tab> <c-r>=InsertTabWrapper ("omni")<cr>
-inoremap <leader>c </<c-x><c-o>
+
+let g:SuperTabDefaultCompletionType = 'context' 
 
 highlight   Pmenu      ctermfg=black ctermbg=lightcyan
 highlight   PmenuSel   ctermfg=0 ctermbg=7
