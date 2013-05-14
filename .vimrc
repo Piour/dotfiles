@@ -1,40 +1,57 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Piour's .vimrc file.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Last change: 29/04/2012 
+" Last change: 12/05/2013 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" pour vundle
-" :BundleInstall
-set nocompatible
-filetype off
-set rtp+=~/.vim/vundle/
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
 Bundle 'gmarik/vundle'
-Bundle 'L9'
 
-" depots github
-Bundle 'tpope/vim-fugitive'
-Bundle 'clones/vim-fuzzyfinder'
-Bundle 'ervandew/supertab'
-Bundle 'fs111/pydoc.vim'
+" My Bundles here:
+"
+Bundle 'Tagbar'
+Bundle 'TaskList.vim'
 
-" depots vim-scripts
-Bundle 'The-NERD-Commenter'
-" http://www.vim.org/scripts/script.php?script_id=1218 (nerd_commenter)
-" ,cc ,cn ,c  ,ci ,cs ,cy ,c$ ,cA ,cl ,cb ,cu
-Bundle 'surround.vim'
-" http://www.vim.org/scripts/script.php?script_id=1697 (surround)
-" ysiw) viwS)
+Bundle 'Solarized'
+
 Bundle 'AutoClose'
-" http://www.vim.org/scripts/script.php?script_id=2009 (autoclose)
+Bundle 'surround.vim' 
+" ysiw) viwS)
 
-" pour vundle
-filetype plugin indent on
+Bundle 'ervandew/supertab'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/vim-snippets'
+Bundle 'garbas/vim-snipmate'
+Bundle 'klen/python-mode'
+Bundle 'jshint.vim'
+
+filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+
+let g:pymode_lint_cwindow = 0
+let g:pymode_lint_ignore  = "E221,E201"
+let g:pymode_rope         = 0
+let g:pymode_options      = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -63,10 +80,6 @@ filetype plugin indent on
 " Lancement
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible   " pas de compatibilite avec vi
-" Inclusion d'un autre fichier avec des options
-if filereadable(expand("~/.vimrc_local.vim"))
-   source ~/.vimrc_local.vim
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -127,35 +140,12 @@ set expandtab    " remplit d'espaces blancs les caracteres <Tab>
 
 set showcmd      " affichage des commandes partiellement saisies
 
-set foldmethod=syntax " gestion des replis (base syntaxe)
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coloration syntaxique
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight clear
-highlight Normal      ctermfg=grey
-highlight Comment     ctermfg=darkgreen
-highlight Identifier  ctermfg=lightgrey cterm=none
-highlight Delimiter   ctermfg=lightgrey
-highlight Type        ctermfg=lightgrey
-highlight Operator    ctermfg=darkcyan
-highlight Function    ctermfg=darkcyan
-highlight Statement   ctermfg=darkcyan
-highlight Keyword     ctermfg=darkcyan
-highlight Exception   ctermfg=darkcyan
-highlight Constant    ctermfg=darkcyan
-highlight Boolean     ctermfg=darkcyan
-highlight Number      ctermfg=darkcyan
-highlight Float       ctermfg=darkcyan
-highlight String      ctermfg=darkcyan
-highlight Character   ctermfg=darkcyan
-highlight PreProc     ctermfg=darkcyan
-highlight Special     ctermfg=darkcyan
-highlight Underlined  ctermfg=darkcyan
-highlight Ignore      ctermfg=lightblue
-highlight Error       ctermfg=black
-highlight Todo        ctermfg=black
+let g:solarized_termtrans = 1
+colorscheme solarized
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -165,10 +155,10 @@ highlight Todo        ctermfg=black
 let mapleader = ","
 map ; .
 
-" ² change capitale/minuscule
-map ² ~
+" Â² change capitale/minuscule
+map Â² ~
 
-" ,n pour passen en mode normal
+" ,n pour passer en mode normal
 imap <leader>n <ESC>
 
 " <F2> enregistre le fichier
@@ -179,12 +169,8 @@ nnoremap <F3> :make<CR><CR><CR>
 " <F5> rafraichit le fichier en cours d'edition
 nnoremap <F5> :e!<CR>
 
-" <F6> recherche de tampons
-nnoremap <F6> :FufBuffer<CR>
 " <F7> explorateur de fichiers (split horizontal)
 nnoremap <F7> :Hexplore<CR>
-" <F6> recherche de fichiers
-nnoremap <F8> :FufFile<CR>
 
 " <F10> aspell sur fichier tex
 nnoremap <F10> :!aspell --mode=tex check % <CR> :e!<CR>
@@ -198,9 +184,6 @@ nnoremap <tab> =$
 
 " <date> en mode normal ajoute la date courrante, format : JJ/MM/YYYY
 nmap date "=strftime("%d/%m/%Y")<CR>P
-
-" <SPACE> depliage/repliage
-nmap <Space> zA
 
 " ctrl-j coupe la ligne au niveau du curseur en mode normal
 " l'inverse de maj-j
@@ -226,35 +209,12 @@ nnoremap <CR> :noh<CR>/<BS>
 set wildmode=list:full          " mode du completement
 set completeopt=longest,menuone " menu lors d'un complement
 
-" python
-au FileType python set omnifunc=pythoncomplete#Complete
-" javascript
-au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-" html
-au FileType html set omnifunc=htmlcomplete#CompleteTags
-" css
-au FileType css set omnifunc=csscomplete#CompleteCSS
-
-
 let g:SuperTabDefaultCompletionType = 'context' 
-
-highlight   Pmenu      ctermfg=black ctermbg=lightcyan
-highlight   PmenuSel   ctermfg=0 ctermbg=7
-highlight   PmenuSbar  ctermfg=7 ctermbg=0
-highlight   PmenuThumb ctermfg=0 ctermbg=7
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trucs a voir
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set digraph " enable digraphs, needed for special characters
-" set magic " enable advanced regular expression in searches
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tests
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256
 map Y y$
 vnoremap < <gv
 vnoremap > >gv
@@ -263,12 +223,3 @@ nnoremap k gk
 inoremap jk <Esc>
 noremap <Leader><Leader> <C-^>
 autocmd BufEnter * execute ":silent! chdir ".escape(expand("%:p:h"), ' ')
-set statusline=
-set statusline +=%*%y%*                "file type
-set statusline +=%*\ %<%F%*            "full path
-set statusline +=%*%=%5l%*             "current line
-set statusline +=%*/%L%*               "total lines
-set statusline +=%*%4v\ %*             "virtual column number
-set statusline +=%*0x%04B\ %*          "character under cursor"
-set statusline +=%*%{fugitive#statusline()}%*
-
