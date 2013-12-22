@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Piour's .vimrc file.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Last change: 12/05/2013 
+" Last change: 22/12/2013
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -15,7 +15,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
@@ -26,15 +26,19 @@ Bundle 'TaskList.vim'
 Bundle 'Solarized'
 
 Bundle 'AutoClose'
-Bundle 'surround.vim' 
+Bundle 'surround.vim'
 " ysiw) viwS)
 
 Bundle 'ervandew/supertab'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-Bundle 'honza/vim-snippets'
-Bundle 'garbas/vim-snipmate'
+" Bundle 'honza/vim-snippets'
+" Bundle 'garbas/vim-snipmate'
+Bundle 'SirVer/ultisnips'
 Bundle 'klen/python-mode'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'kchmck/vim-coffee-script'
+
 Bundle 'jshint.vim'
 
 filetype plugin indent on     " required!
@@ -48,11 +52,19 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
+let g:SuperTabDefaultCompletionType = 'context'
+
 let g:pymode_lint_cwindow = 0
 let g:pymode_lint_ignore  = "E221,E201"
 let g:pymode_rope         = 0
 let g:pymode_options      = 0
 
+let g:jedi#popup_on_dot = 0
+let g:jedi#use_tabs_not_buffers = 1
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Aide
@@ -144,8 +156,29 @@ set showcmd      " affichage des commandes partiellement saisies
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coloration syntaxique
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:solarized_termtrans = 1
-colorscheme solarized
+highlight clear
+highlight Normal      ctermfg=grey
+highlight Comment     ctermfg=darkgreen
+highlight Identifier  ctermfg=lightgrey cterm=none
+highlight Delimiter   ctermfg=lightgrey
+highlight Type        ctermfg=lightgrey
+highlight Operator    ctermfg=darkcyan
+highlight Function    ctermfg=darkcyan
+highlight Statement   ctermfg=darkcyan
+highlight Keyword     ctermfg=darkcyan
+highlight Exception   ctermfg=darkcyan
+highlight Constant    ctermfg=darkcyan
+highlight Boolean     ctermfg=darkcyan
+highlight Number      ctermfg=darkcyan
+highlight Float       ctermfg=darkcyan
+highlight String      ctermfg=darkcyan
+highlight Character   ctermfg=darkcyan
+highlight PreProc     ctermfg=darkcyan
+highlight Special     ctermfg=darkcyan
+highlight Underlined  ctermfg=darkcyan
+highlight Ignore      ctermfg=lightblue
+highlight Error       ctermfg=black
+highlight Todo        ctermfg=black
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -155,8 +188,8 @@ colorscheme solarized
 let mapleader = ","
 map ; .
 
-" Â² change capitale/minuscule
-map Â² ~
+" ² change capitale/minuscule
+map ² ~
 
 " ,n pour passer en mode normal
 imap <leader>n <ESC>
@@ -209,7 +242,10 @@ nnoremap <CR> :noh<CR>/<BS>
 set wildmode=list:full          " mode du completement
 set completeopt=longest,menuone " menu lors d'un complement
 
-let g:SuperTabDefaultCompletionType = 'context' 
+highlight   Pmenu      ctermfg=black ctermbg=lightcyan
+highlight   PmenuSel   ctermfg=0 ctermbg=7
+highlight   PmenuSbar  ctermfg=7 ctermbg=0
+highlight   PmenuThumb ctermfg=0 ctermbg=7
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
